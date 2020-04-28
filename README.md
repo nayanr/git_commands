@@ -127,8 +127,196 @@ for a different name use above command.
 
 After cloning repo and doing all the changes locally push changes back
 
-##### Publishing chaanges back
+##### Publishing changes back
 
 ``` git config --global push.default simple ```
 this sets to push on all branches if we use
 ``` git push ```
+
+#### git fetch and pull
+
+If remote repo is modified when we are working locally a push may run into error and suggests to fetch first
+
+Pull actually fetches and merges that with local
+
+``` git fetch ```
+fetches changes happened
+
+``` git push ``` would work if no conflicts are present and would merge
+
+``` git pull ```
+if git fetch command returns some changes it will be shown while doing a git status if it could be merged use a git pull
+
+
+###### If we change the repository name in github we need to change the refernce locally too
+
+``` git remote set-url origin url ```
+
+``` git remote show origin ```
+
+##### Github time trvel 
+
+go in commits tab and select symbol to go to the point in time when that commit, browse files and after all this return back to master
+
+copy sha1 for that commit to see locally
+
+``` git show sha1_code_here ```
+
+##### Comparing and Pull requests
+
+Compare with other branches on github, if merge is possible we can create pull request and this will be left for approval. 
+
+Place a pull request with the owner and after approval it will be merged !!
+
+
+##### Merging locally
+
+``` git merge branchname tobemergebranchname ```
+
+``` git fetch -p ```
+prune dead branches locally
+
+##### Locally switch to a branch on github
+
+```
+git fetch
+git branch -a
+git checkout remote_branch
+```
+``` git pull --all ```
+this pulls all the branches being tracked locally
+
+
+###### To push a branch deletion on Github
+
+``` git push origin :branchname ```
+after deleting it locally
+
+##### Pull with rebase
+
+concept of rebasing -- 
+
+reabse is basically stating that we want our commits to be always ahead of what happened on remote in github, so we pull with rebase
+
+``` git pull --rebase ```
+
+#### Github Graphs
+
+``` git log --oneline --graph ```
+
+or we can go to github and check graphs tab directly
+
+##### Setting default branch
+
+default branch option in settings of repository 
+any clone will clone default branch
+
+##### Pull conflict
+between remote and local
+
+
+##### Github allows use of release notes with tags used
+
+##### Tags in local
+
+``` git log --oneline ```
+``` git tag ```
+Simple light weight tags, simply labels a sepcific position like below we are creating a tag unstable at the point of last commit in the branchname
+
+``` git tag unstable branchname ```
+``` git tag --list ```
+
+Example of annotated tag
+``` git tag -a v0.1-alpha -m "release 0.1" commitid ```
+``` git show ```
+
+###### Pushing local tags to github
+
+``` git pull ```
+``` git push ```
+
+By default tags are not pushed
+
+``` git push origin tagname ```
+origin points at github
+
+``` git push --tags ```
+to push all the tags
+On github we can add release messages related to the github
+
+##### Deleting tags
+
+On github we can just go to releases tab then tag and click on the tag to expand and select the delete option.
+
+Locally we can delete
+
+``` git fetch -p ``` to sync and prune dead stuff
+
+``` git tag -d tagname ```
+``` git push origin :tagname ``` to delete it from remote too
+
+##### Updating tags (floating tags)
+
+Moving tags to new commit id
+
+``` git tag -f tagname commitid_to_be_associated ```
+``` git push --force origin tagname ``` to update tags on remote simple ``` git push origin tagname ``` runs into error
+
+
+Can use the pre release function while editing releases on github.
+
+Deleting a release doesn't delete the tag, need to delete from the ta section too.
+
+To create a new release on github use draft a new release option from releases tab.
+
+##### Comparing with pull requests on github
+
+Create a new pull request takes us to compare option and we can compare branches
+
+Comparing commits can be done under commits tab
+can also be done using pull request comparing with a branch.
+
+Tags can also be doing using pull request comparing.
+
+branch@(time) can be used to compare between different positions.
+
+##### Social Coding
+
+Forking a github repository.
+Up-stream repository is the repo forked from !!
+
+Create a feture branch after cloning into local the forked repository.
+
+Push the feature branch to remote on github.
+
+Creating a pull-request.
+This for submitting our contributions to the upstream repository !!
+
+Open a pull request opens it with the directory forked from !!
+Reverting and restoring pull requests is also allowed on github !!
+
+Syncing changes back to fork --
+
+To add parent repo in local for pulling changes use 
+
+``` git remode add upstream url_of_parent ```
+``` git remote -v ```
+to list all theremote repos connected
+
+``` git pull upstream master ```
+upstream just works as origin but points to the upstream directory
+
+``` git push origin master ```
+pushes changes to our fork
+
+
+
+
+
+
+
+
+
+
+
+
